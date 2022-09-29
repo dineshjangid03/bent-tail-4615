@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import exception.EmployeeException;
 
@@ -86,6 +89,152 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 		}
 		
 		return list;
+	}
+
+
+	@Override
+	public String changeDepartment(int employeeID, int newDepartmentID) {
+		String message="department not change";
+		
+		try (Connection con=DButil.getConnection()) {
+			
+			PreparedStatement ps=con.prepareStatement("update employee set departmentid=? where id=?");
+			
+			ps.setInt(1, newDepartmentID);
+			ps.setInt(2, employeeID);
+			
+			int x=ps.executeUpdate();
+			
+			if(x>0) {
+				message="employee transferred to new department";
+			}
+			
+		} catch (SQLException e) {
+			message=e.getMessage();
+		}
+		
+		
+		
+		
+		return message;
+	}
+
+
+	@Override
+	public String updateEmployee(Employee employee, int id) {
+		String message="not updated";
+		try (Connection con=DButil.getConnection()) {
+			
+		} catch (SQLException e) {
+			message=e.getMessage();
+		}
+		return message;
+	}
+
+
+	@Override
+	public String changeEmpPassword(int id) {
+		String message="not change";
+		
+		try (Connection con=DButil.getConnection()) {
+			
+			PreparedStatement ps = con.prepareStatement(" select * from employee where id = ?");
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				Scanner sc = new Scanner(System.in);
+				System.out.println("Enter existing password");
+				String pass=sc.next();
+				if(pass.equals(rs.getString("password"))) {
+					message=changePass(id);
+				}
+				else {
+					message="Incorrect password";
+				}
+			}
+			else {
+				return "Employee not found";
+			}
+			
+		} catch (SQLException e) {
+			message=e.getMessage();
+		}
+
+		return message;
+	}
+
+	
+	private String changePass(int id) {
+		String messagesg="password not updated";
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter new password");
+		String npass=sc.next();
+		
+		try (Connection con=DButil.getConnection()){
+			PreparedStatement ps=con.prepareStatement("update employee set password=? where id=?");
+			ps.setString(1, npass);
+			ps.setInt(2, id);
+			
+			int rs=ps.executeUpdate();
+			if(rs>0) {
+				messagesg="password updated sucessfully";
+			}
+
+		} catch (SQLException e) {
+			
+			messagesg=e.getMessage();
+		 
+		}
+		
+	   return messagesg;
+		
+	}
+	
+	
+
+	@Override
+	public Employee getEmployeeByID(int id1)throws EmployeeException{
+		Employee emp=null;
+		
+		try (Connection con=DButil.getConnection()){
+			
+			PreparedStatement ps=con.prepareStatement("select * from employee where id=?");
+			
+			ps.setInt(1, id1);
+			
+			ResultSet rs=ps.executeQuery();
+			DateFormat dateFormat=new SimpleDateFormat("yyyy-mm-dd");
+			if(rs.next()) {
+				
+				int id=rs.getInt("id");
+				String firstname=rs.getString("firstName");
+				String lastname=rs.getString("lastName");
+				String mobile=rs.getString("mobile");
+				String email=rs.getString("email");
+				String password=rs.getString("password");
+				Date dob=rs.getDate("dateOfBirth");
+				String dateOfBirth=dateFormat.format(dob); 
+				String address=rs.getString("address");
+				int salary=rs.getInt("salary");
+				Date hd=rs.getDate("hireDate");
+				String hireDate=dateFormat.format(hd);
+				int departmentId=rs.getInt("departmentId");
+				
+				emp=new Employee(id, firstname, lastname, mobile, email, password, dateOfBirth, address, salary, hireDate, departmentId);
+				
+			}else {
+				throw new EmployeeException("Employee not exist with this id : "+id1);
+			}
+			
+		} catch (SQLException e) {
+			throw new EmployeeException(e.getMessage());
+		}
+		
+		return emp;
 	}
 
 }

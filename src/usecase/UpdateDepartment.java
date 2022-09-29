@@ -10,7 +10,7 @@ public class UpdateDepartment {
 		
 		DepartmentDAO dao=new DepartmentDaoImpl();
 		
-		String res=dao.updateDepartment(new Department(1, "dd"));
+		String res=dao.updateDepartment(new Department(8, "demo"));
 		
 		System.out.println(res);
 		
