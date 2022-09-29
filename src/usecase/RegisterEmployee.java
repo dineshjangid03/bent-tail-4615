@@ -10,7 +10,7 @@ public class RegisterEmployee {
 	public static void main(String[] args) {
 		EmployeeDAO dao=new EmployeeDaoImpl();
 		
-		String res= dao.registerEmployee(new Employee("Suresh", "kumar", "9999", "s@com", "@pass", "2005-06-01", "DL", 2000, "2022-05-01", 3));
+		String res= dao.registerEmployee(new Employee("Sujeet", "kumar", "99999999", "sujeet@com", "s@pass", "2004-06-01", "DL", 20000, "2022-06-01", 8));
 		
 		System.out.println(res);
 
