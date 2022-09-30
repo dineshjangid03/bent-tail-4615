@@ -121,18 +121,6 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 
 	@Override
-	public String updateEmployee(Employee employee, int id) {
-		String message="not updated";
-		try (Connection con=DButil.getConnection()) {
-			
-		} catch (SQLException e) {
-			message=e.getMessage();
-		}
-		return message;
-	}
-
-
-	@Override
 	public String changeEmpPassword(int id) {
 		String message="not change";
 		
@@ -235,6 +223,31 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 		}
 		
 		return emp;
+	}
+
+
+	@Override
+	public String updateEmployee(String column, String typeName, int id) {
+		String message="not updated";
+		
+		try (Connection con=DButil.getConnection()) {
+			
+			PreparedStatement ps=con.prepareStatement("update employee set "+column+"=? where id=?");
+			
+			ps.setString(1, typeName);
+			ps.setInt(2, id);
+			
+			int x=ps.executeUpdate();
+			
+			if(x>0) {
+				message="updated";
+			}
+			
+		} catch (SQLException e) {
+			message=e.getMessage();
+		}
+
+		return message;
 	}
 
 }
