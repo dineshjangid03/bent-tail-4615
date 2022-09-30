@@ -26,3 +26,13 @@ FOREIGN KEY (departmentID) REFERENCES department (id)
 
 insert into employee(firstName,lastName,mobile,email,password,dateOfBirth,address,salary,hireDate,departmentID) values('a','a','111111','a@a','pass','2001-01-01','add',5000,'2022-01-01',1);
 
+CREATE TABLE leaves (
+empID INT NOT NULL,
+leavefrom DATE NOT NULL,
+leavetill DATE NOT NULL,
+status VARCHAR(20) NOT NULL DEFAULT 'Pending',
+FOREIGN key (empID) REFERENCES employee (id)
+);
+
+insert into leaves(empID,leavefrom,leavetill) values(6,'2022-02-02','2020-03-03');
+

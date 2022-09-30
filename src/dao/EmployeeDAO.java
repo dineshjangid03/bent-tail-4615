@@ -11,10 +11,10 @@ public interface EmployeeDAO {
 	
 	public String changeDepartment(int employeeID, int newDepartmentID);
 	
-	public String updateEmployee(Employee employee, int id);
-	
 	public String changeEmpPassword(int id);
 	
 	public Employee getEmployeeByID(int id)throws EmployeeException;
+	
+	public String updateEmployee(String type, String typeName, int id);
 
 }

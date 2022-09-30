@@ -5,11 +5,11 @@ import dao.EmployeeDaoImpl;
 
 public class changeEmpPass {
 
-	public static void main(String[] args) {
+	public static void main(int id) {
 		
 		EmployeeDAO d=new EmployeeDaoImpl();
 		
-		String res=d.changeEmpPassword(6);
+		String res=d.changeEmpPassword(id);
 		
 		System.out.println(res);
 
