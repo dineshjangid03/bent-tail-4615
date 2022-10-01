@@ -1,5 +1,9 @@
 package other;
 
+import java.util.Scanner;
+import exception.EmployeeException;
+import model.Employee;
+
 public class Home {
 	
 	public static void home() {
@@ -41,19 +45,43 @@ public class Home {
 		
 		
 		
-		
-		
-		
-		System.out.println(""
-				+ "╔═══════════════════╗\r\n"
-				+ "    Choose option\r\n"
-				+ "╚═══════════════════╝\r\n"
-				+ "1. Admin login\r\n"
-				+ "2. Employee login\r\n"
-				+ "3. Exit");
-		
-		
-		
 	}
-
+	public static void options() {
+		Scanner sc=new Scanner(System.in);
+		
+		
+		while(true) {
+			System.out.println(""
+					+ "╔═══════════════════╗\r\n"
+					+ "    Choose option\r\n"
+					+ "╚═══════════════════╝\r\n"
+					+ "1. Admin login\r\n"
+					+ "2. Employee login\r\n"
+					+ "3. Exit");
+			
+			int choice=sc.nextInt();
+			
+			switch(choice) {
+			case 1:
+				if(Login.adminLoginAuth()) {
+					Panels.adminPanel();
+				}
+				else {
+					System.out.println("Wrong credentials");
+				}
+				break;
+			case 2:
+				try {
+					Employee emp=Login.employeeLoginAuth();
+					Panels.employeePanel(emp);
+				} catch (EmployeeException e) {
+					System.out.println(e.getMessage());
+				}
+				break;
+			case 3:
+				System.out.println("See You...!");
+				System.exit(0);
+			}
+		}
+	}
 }

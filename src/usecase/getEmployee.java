@@ -1,5 +1,6 @@
 package usecase;
 
+import Print.PrintEmployee;
 import dao.EmployeeDAO;
 import dao.EmployeeDaoImpl;
 import exception.EmployeeException;
@@ -13,11 +14,13 @@ public class getEmployee {
 		
 		try {
 			Employee res=d.getEmployeeByID(id);
-			System.out.println(res);
+			PrintEmployee.printSingleEmployee(res);
 		} catch (EmployeeException e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
+	
+	
 
 }

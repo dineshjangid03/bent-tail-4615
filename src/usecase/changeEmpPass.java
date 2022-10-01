@@ -10,7 +10,7 @@ public class changeEmpPass {
 		EmployeeDAO d=new EmployeeDaoImpl();
 		
 		String res=d.changeEmpPassword(id);
-		
+		System.out.println();
 		System.out.println(res);
 
 	}

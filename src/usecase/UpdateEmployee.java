@@ -7,16 +7,25 @@ import dao.EmployeeDaoImpl;
 
 public class UpdateEmployee {
 
-	public static void main(String[] args) {
+	public static void main(int id) {
+
+		try {
+		System.out.println();
+		System.out.println("    ╔═══════════════════╗");
+		Thread.sleep(50);
+		System.out.println("        Select update");
+		Thread.sleep(50);
+		System.out.println("    ╚═══════════════════╝");
+		Thread.sleep(50);
+		System.out.println("1. First Name      2. Last Name");
+		Thread.sleep(50);
+		System.out.println("3. Mobile          4. Email");
+		Thread.sleep(50);
+		System.out.println("5. DOB             6. Address");
+		Thread.sleep(50);
+		System.out.println("7. Password        8. go back");
+		} catch (InterruptedException e1) {}
 		
-		System.out.println(""
-				+ "    ╔═══════════════════╗\r\n"
-				+ "        Select update\r\n"
-				+ "    ╚═══════════════════╝\r\n"
-				+ "1. First Name      2. Last Name\r\n"
-				+ "3. Mobile          4. Email\r\n"
-				+ "5. DOB             6. Address\r\n"
-				+ "7. Password        8. go back\r\n");
 		
 		Scanner sc=new Scanner(System.in);
 		int choice=8;
@@ -69,20 +78,16 @@ public class UpdateEmployee {
 			break;
 			
 		default :
-			System.out.println("Thank You !");
-			sc.close();
 			return;
-		
-			
+
 		}
 		
 		EmployeeDAO e=new EmployeeDaoImpl();
 		
-		String res=e.updateEmployee(column, value, 4);
+		String res=e.updateEmployee(column, value, id);
 		
 		System.out.println(res);
 		
-		sc.close();
 
 	}
 

@@ -1,6 +1,8 @@
 package usecase;
 
 import java.util.List;
+
+import Print.PrintDepartment;
 import dao.DepartmentDAO;
 import dao.DepartmentDaoImpl;
 import exception.DepartmentException;
@@ -15,8 +17,8 @@ public class GetAllDepartment {
 		try {
 			List<Department>list=dao.getAllDepartment();
 			
-			list.forEach(s-> System.out.println(s));
-			
+			PrintDepartment.printDepartmentList(list);
+
 		} catch (DepartmentException e) {
 			System.out.println(e.getMessage());
 		}

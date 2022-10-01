@@ -18,6 +18,7 @@ public class applyLeave {
 		
 		String res=l.requestLeave(id, startDate, endDate);
 		
+		System.out.println();
 		System.out.println(res);
 		
 		

@@ -19,8 +19,8 @@ public class RegisterEmployee {
 		String mob=sc.next();
 		System.out.println("Enter Email of Employee");
 		String email=sc.next();
-		System.out.println("Enter Password of Employee");
-		String pass=sc.next();
+//		System.out.println("Enter Password of Employee");
+//		String pass=sc.next();
 		System.out.println("Enter DOB of Employee in yyyy-mm-dd format");
 		String dob=sc.next();
 		System.out.println("Enter Address of Employee");
@@ -33,7 +33,12 @@ public class RegisterEmployee {
 		System.out.println("Enter Department ID for Employee");
 		int did=sc.nextInt();
 		EmployeeDAO dao=new EmployeeDaoImpl();
-		
+		String pass='@'+fname;
+		for(int i=0; i<mob.length(); i++) {
+			pass+=mob.charAt(i);
+			if(i==3)
+				break;
+		}
 		String res= dao.registerEmployee(new Employee(fname, lname, mob, email, pass, dob, add, sal, HD, did));
 		
 		System.out.println(res);
