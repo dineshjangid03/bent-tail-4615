@@ -21,8 +21,7 @@ public class Login {
 		
 		System.out.println("Enter Admin Password");
 		String pass=sc.next();
-		sc.close();
-		
+		CoolThings.loding();
 		if(user.equals("admin")&&pass.equals("admin123")) {
 			return true;
 		}else{
@@ -42,7 +41,7 @@ public class Login {
 		
 		System.out.println("Enter Your Password");
 		String password=sc.next();
-		
+		CoolThings.loding();
 		try (Connection con=DButil.getConnection()){
 			
 			PreparedStatement ps=con.prepareStatement("select * from employee where email=?");
@@ -75,11 +74,8 @@ public class Login {
 			}
 			
 		} catch (SQLException e) {
-			sc.close();
 			throw new EmployeeException(e.getMessage());
 		}
-		
-		sc.close();
 		
 		return emp;
 		

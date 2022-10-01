@@ -42,7 +42,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 			int x= ps.executeUpdate();
 			
 			if(x > 0)
-				message = "Employee Registered Sucessfully !";
+				message = "Employee Registered Sucessfully ! Password is "+employee.getPassword();
 			
 		}catch(SQLException e) {
 			message=e.getMessage();
@@ -94,7 +94,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public String changeDepartment(int employeeID, int newDepartmentID) {
-		String message="department not change";
+		String message="Department Not Change";
 		
 		try (Connection con=DButil.getConnection()) {
 			
@@ -106,7 +106,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 			int x=ps.executeUpdate();
 			
 			if(x>0) {
-				message="employee transferred to new department";
+				message="Employee Transferred to New Department";
 			}
 			
 		} catch (SQLException e) {
@@ -122,7 +122,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public String changeEmpPassword(int id) {
-		String message="not change";
+		String message="Not Change";
 		
 		try (Connection con=DButil.getConnection()) {
 			
@@ -144,7 +144,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 				}
 			}
 			else {
-				return "Employee not found";
+				return "Employee Not Found";
 			}
 			
 		} catch (SQLException e) {
@@ -156,7 +156,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	
 	private String changePass(int id) {
-		String messagesg="password not updated";
+		String messagesg="Password Not Updated";
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("Enter new password");
@@ -169,7 +169,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 			
 			int rs=ps.executeUpdate();
 			if(rs>0) {
-				messagesg="password updated sucessfully";
+				messagesg="Password Updated Sucessfully";
 			}
 
 		} catch (SQLException e) {
@@ -228,7 +228,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public String updateEmployee(String column, String typeName, int id) {
-		String message="not updated";
+		String message="Not Updated";
 		
 		try (Connection con=DButil.getConnection()) {
 			
@@ -240,7 +240,7 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 			int x=ps.executeUpdate();
 			
 			if(x>0) {
-				message="updated";
+				message=column+" Updated Successfully";
 			}
 			
 		} catch (SQLException e) {
@@ -248,6 +248,45 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 		}
 
 		return message;
+	}
+
+
+	@Override
+	public List<Employee> employeeByDepartment(int id) throws EmployeeException {
+		List<Employee> list=new ArrayList<>();
+		
+		try(Connection con=DButil.getConnection()) {
+			
+			PreparedStatement ps=con.prepareStatement("select * from employee where departmentID=?");
+			ps.setInt(1, id);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				Employee e=new Employee();
+				e.setId(rs.getInt("id"));
+				e.setFirstName(rs.getString("firstName"));
+				e.setLastName(rs.getString("lastName"));
+				e.setMobile(rs.getString("mobile"));
+				e.setEmail(rs.getString("email"));
+				e.setPassword(rs.getString("password"));
+				e.setDateOfBirth(rs.getString("dateOfBirth"));
+				e.setAddress(rs.getString("address"));
+				e.setSalary(rs.getInt("salary"));
+				e.setHireDate(rs.getString("hireDate"));
+				e.setDepartmentID(rs.getInt("departmentID"));
+				
+				list.add(e);
+			}
+			
+		} catch (SQLException e) {
+			throw new EmployeeException(e.getMessage());
+		}
+		
+		if(list.size()==0) {
+			throw new EmployeeException("Zero Employee in this Department");
+		}
+		
+		return list;
 	}
 
 }

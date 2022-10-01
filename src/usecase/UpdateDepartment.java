@@ -23,6 +23,10 @@ public class UpdateDepartment {
 		
 		System.out.println(res);
 		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {}
+		
 	}
 
 }
