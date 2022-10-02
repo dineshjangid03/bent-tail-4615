@@ -11,15 +11,17 @@ import model.Employee;
 import utility.DButil;
 
 public class Login {
-	
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String GREEN_BOLD = "\033[1;32m";
+	public static final String RED_BOLD = "\033[1;31m";
 	public static boolean adminLoginAuth() {
 		
 		Scanner sc=new Scanner(System.in);
 
-		System.out.println("Enter Admin Username");
+		System.out.println(GREEN_BOLD+"Enter Admin Username"+ANSI_RESET);
 		String user=sc.next();
 		
-		System.out.println("Enter Admin Password");
+		System.out.println(GREEN_BOLD+"Enter Admin Password"+ANSI_RESET);
 		String pass=sc.next();
 		CoolThings.loding();
 		if(user.equals("admin")&&pass.equals("admin123")) {
@@ -36,10 +38,10 @@ public class Login {
 		
 		Scanner sc=new Scanner(System.in);
 		
-		System.out.println("Enter Your Email");
+		System.out.println(GREEN_BOLD+"Enter Your Email"+ANSI_RESET);
 		String email=sc.next();
 		
-		System.out.println("Enter Your Password");
+		System.out.println(GREEN_BOLD+"Enter Your Password"+ANSI_RESET);
 		String password=sc.next();
 		CoolThings.loding();
 		try (Connection con=DButil.getConnection()){
@@ -65,12 +67,12 @@ public class Login {
 				emp.setDepartmentID(rs.getInt("departmentID"));
 				
 				if(!emp.getPassword().equals(password)) {
-					throw new EmployeeException("Wrong Password");
+					throw new EmployeeException(RED_BOLD+"Wrong Password"+ANSI_RESET);
 				}
 				
 			}
 			else {
-				throw new EmployeeException("Email ID not exist");
+				throw new EmployeeException(RED_BOLD+"Email ID not exist"+ANSI_RESET);
 			}
 			
 		} catch (SQLException e) {

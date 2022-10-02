@@ -1,12 +1,13 @@
 package Main;
 
+import other.CoolThings;
 import other.Home;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Home.home();
+		CoolThings.home();
 		
 		Home.options();
 		
