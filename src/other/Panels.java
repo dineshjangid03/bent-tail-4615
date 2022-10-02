@@ -19,10 +19,14 @@ import usecase.transferEmployee;
 
 public class Panels {
 	
+	public static final String YELLOW_BOLD = "\033[1;33m";
+	public static final String CYAN_BOLD = "\033[1;36m";
+	public static final String ANSI_RESET = "\u001B[0m";
+	
 	public static void adminPanel() {
 		System.out.println();
 		System.out.println();
-		System.out.println("------------welcome to admin panel------------");
+		System.out.println(YELLOW_BOLD+"------------welcome to admin panel------------"+ANSI_RESET);
 		Scanner sc=new Scanner(System.in);
 		while(true) {
 			System.out.println();
@@ -30,7 +34,7 @@ public class Panels {
 			System.out.println("----------------------------------------------");
 			try {
 			Thread.sleep(50);
-			System.out.println("            ╔═══════════════════╗");
+			System.out.println(CYAN_BOLD+"            ╔═══════════════════╗");
 			Thread.sleep(50);
 			System.out.println("                Choose option");
 			Thread.sleep(50);
@@ -48,7 +52,7 @@ public class Panels {
 			Thread.sleep(50);
 			System.out.println("10. Employee By Department");
 			Thread.sleep(50);
-			System.out.println("11. Exit");
+			System.out.println("11. Exit"+ANSI_RESET);
 			Thread.sleep(50);
 			System.out.println("----------------------------------------------");
 			} catch (InterruptedException e) {}
@@ -107,7 +111,7 @@ public static void employeePanel(Employee employee) {
 		
 		System.out.println();
 		System.out.println();
-		System.out.println("WELCOME "+employee.getFirstName()+" "+employee.getLastName());
+		System.out.println(YELLOW_BOLD+"WELCOME "+employee.getFirstName()+" "+employee.getLastName()+ANSI_RESET);
 		
 		Scanner sc=new Scanner(System.in);
 		while(true) {
@@ -115,7 +119,7 @@ public static void employeePanel(Employee employee) {
 			System.out.println("----------------------------------------------");
 			try {
 			Thread.sleep(50);
-			System.out.println("            ╔═══════════════════╗");
+			System.out.println(CYAN_BOLD+"            ╔═══════════════════╗");
 			Thread.sleep(50);
 			System.out.println("                Choose option");
 			Thread.sleep(50);
@@ -125,7 +129,7 @@ public static void employeePanel(Employee employee) {
 			Thread.sleep(50);
 			System.out.println("3. Change Password   4. Apply for Leave");
 			Thread.sleep(50);
-			System.out.println("5. Exit");
+			System.out.println("5. Exit"+ANSI_RESET);
 			Thread.sleep(50);
 			System.out.println("----------------------------------------------");
 			} catch (InterruptedException e) {}

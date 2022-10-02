@@ -6,6 +6,8 @@ import model.Employee;
 
 public class PrintEmployee {
 	
+	public static final String WHITE_BOLD = "\033[1;37m";
+	public static final String ANSI_RESET = "\u001B[0m";
 	
 	public static void printEmployeeList(List<Employee>list){
 		
@@ -38,13 +40,13 @@ public class PrintEmployee {
 			
 			System.out.println();
 			try {
-			System.out.println("   EMP-ID : "+eid.substring(0, 12)+"FIRST NAME    : "+fname.substring(0, psl+1)+"LAST-NAME : "+lname.substring(0,lnl+3));
+			System.out.println(WHITE_BOLD+"   EMP-ID : "+ANSI_RESET+eid.substring(0, 12)+WHITE_BOLD+"FIRST NAME    : "+ANSI_RESET+fname.substring(0, psl+1)+WHITE_BOLD+"LAST-NAME : "+ANSI_RESET+lname.substring(0,lnl+3));
 			Thread.sleep(20);
-			System.out.println("   DEP-ID : "+did.substring(0, 12)+"DATE OF BIRTH : "+dob.substring(0,   psl+1)+"HIRE DATE : "+hd.substring(0,lnl+3));
+			System.out.println(WHITE_BOLD+"   DEP-ID : "+ANSI_RESET+did.substring(0, 12)+WHITE_BOLD+"DATE OF BIRTH : "+ANSI_RESET+dob.substring(0,   psl+1)+WHITE_BOLD+"HIRE DATE : "+ANSI_RESET+hd.substring(0,lnl+3));
 			Thread.sleep(20);
-			System.out.println("   SALARY : "+sal.substring(0, 12)+"PASSWORD      : "+pass.substring(0,  psl+1)+"EMAIL     : "+email.substring(0,eml+3));
+			System.out.println(WHITE_BOLD+"   SALARY : "+ANSI_RESET+sal.substring(0, 12)+WHITE_BOLD+"PASSWORD      : "+ANSI_RESET+pass.substring(0,  psl+1)+WHITE_BOLD+"EMAIL     : "+ANSI_RESET+email.substring(0,eml+3));
 			Thread.sleep(20);
-			System.out.println("   MOBILE : "+mob.substring(0, 12)+"ADDRESS       : "+add.substring(0, adl+3));
+			System.out.println(WHITE_BOLD+"   MOBILE : "+ANSI_RESET+mob.substring(0, 12)+WHITE_BOLD+"ADDRESS       : "+ANSI_RESET+add.substring(0, adl+3));
 			Thread.sleep(20);
 			System.out.println();
 			Thread.sleep(20);
@@ -71,25 +73,25 @@ public class PrintEmployee {
 		Thread.sleep(20);
 		System.out.println("");
 		Thread.sleep(20);
-		System.out.println("   ID       : "+e.getId());
+		System.out.println(WHITE_BOLD+"   ID       : "+ANSI_RESET+e.getId());
 		Thread.sleep(20);
-		System.out.println("   Name     : "+e.getFirstName()+" "+e.getLastName());
+		System.out.println(WHITE_BOLD+"   Name     : "+ANSI_RESET+e.getFirstName()+" "+e.getLastName());
 		Thread.sleep(20);
-		System.out.println("   Mobile   : "+e.getMobile());
+		System.out.println(WHITE_BOLD+"   Mobile   : "+ANSI_RESET+e.getMobile());
 		Thread.sleep(20);
-		System.out.println("   Email    : "+e.getEmail());
+		System.out.println(WHITE_BOLD+"   Email    : "+ANSI_RESET+e.getEmail());
 		Thread.sleep(20);
-		System.out.println("   Password : "+e.getPassword());
+		System.out.println(WHITE_BOLD+"   Password : "+ANSI_RESET+e.getPassword());
 		Thread.sleep(20);
-		System.out.println("   DOB      : "+e.getDateOfBirth());
+		System.out.println(WHITE_BOLD+"   DOB      : "+ANSI_RESET+e.getDateOfBirth());
 		Thread.sleep(20);
-		System.out.println("   Address  : "+e.getAddress());
+		System.out.println(WHITE_BOLD+"   Address  : "+ANSI_RESET+e.getAddress());
 		Thread.sleep(20);
-		System.out.println("   Salary   : "+e.getSalary());
+		System.out.println(WHITE_BOLD+"   Salary   : "+ANSI_RESET+e.getSalary());
 		Thread.sleep(20);
-		System.out.println("   Hire Date: "+e.getHireDate());
+		System.out.println(WHITE_BOLD+"   Hire Date: "+ANSI_RESET+e.getHireDate());
 		Thread.sleep(20);
-		System.out.println("   DEP.ID   : "+e.getDepartmentID());
+		System.out.println(WHITE_BOLD+"   DEP.ID   : "+ANSI_RESET+e.getDepartmentID());
 		Thread.sleep(20);
 		System.out.println("█                                  █");
 		Thread.sleep(20);

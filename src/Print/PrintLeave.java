@@ -9,6 +9,8 @@ public class PrintLeave {
 	public static void printLeaveList(List<Leave>list) {
 		for(Leave leave:list) {
 			try {
+			System.out.println("-----------------------------");
+			System.out.println();
 			System.out.println("EMPLOYEE ID   : "+leave.getEmployeeId());
 			Thread.sleep(20);
 			System.out.println("EMPLOYEE NAME : "+leave.getFirstName()+" "+leave.getLastName());
@@ -24,6 +26,8 @@ public class PrintLeave {
 			System.out.println();
 			} catch (InterruptedException e) {}
 		}
+		System.out.println("-----------------------------");
+		System.out.println();
 	}
 
 }
